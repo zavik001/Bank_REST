@@ -1,0 +1,8 @@
+CREATE TABLE transactions (
+    id SERIAL PRIMARY KEY,
+    from_card_id INTEGER REFERENCES cards(id) ON DELETE SET NULL,
+    to_card_id INTEGER REFERENCES cards(id) ON DELETE SET NULL,
+    amount DECIMAL(15, 2) NOT NULL,
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('SUCCESS', 'FAILED', 'PENDING'))
+);
